@@ -24,7 +24,7 @@ function send() {
     remove_c1=word.replace(c1,"_");
     remove_c2=remove_c1.replace(c2,"_");
     remove_c3=remove_c2.replace(c3,"_");
-    question_Word="<h4 id='word_display'>Q. "+remove_c1+"</h4>";
+    question_word="<h4 id='word_display'>Q. "+remove_c3+"</h4>";
 
     input_box = "<br>Answer : <input type='text' id='input_check_box'>";
      check_button = "<br><br><button class='btn btn-info' onclick='check()'>Check</button>";
@@ -33,4 +33,41 @@ function send() {
         document.getElementById("word").value = "";
 }
 
+var question_turn="player1";
+var answer_turn="player2";
+function check() {
+    get_answer=document.getElementById("input_check_box").value;
+    answer=get_answer.toLowerCase();
+    if (answer==word) {
+        if (answer_turn=="player1") {
+            player1_score=player1_score+1;
+            document.getElementById("player1_score").innerHTML=player1_score;
 
+        }
+        else{
+            player2_score=player2_score+1;
+            document.getElementById("player2_score").innerHTML=player2_score;
+ 
+        }
+        if (question_turn=="player1") {
+            question_turn="player2";
+            document.getElementById("player_question").innerHTML="question turn-"+player_2;
+
+        }
+        else if(question_turn=="player2"){
+            question_turn="player1";
+            document.getElementById("player_question").innerHTML="question turn-"+player_1;
+        }
+
+        if (answer_turn=="player1") {
+            answer_turn="player2";
+            document.getElementById("player_answer").innerHTML="answer turn-"+player_2;
+
+        }
+        else if(answer_turn=="player2"){
+            answer_turn="player1";
+            document.getElementById("player_answer").innerHTML="answer turn-"+player_1;
+        }
+    }
+    document.getElementById("output").innerHTML="";
+}
